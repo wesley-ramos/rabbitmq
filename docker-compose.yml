@@ -37,3 +37,22 @@ services:
     links:
       - rabbitmq_master
       - rabbitmq_slave
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    network_mode: "bridge"
+    volumes:
+       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    network_mode: "bridge"
+    ports:
+      - 3000:3000
+    environment:
+      ADMIN_USER: "admin"
+      ADMIN_PASSWORD: "admin"
+
