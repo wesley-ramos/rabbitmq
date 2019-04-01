@@ -1,0 +1,39 @@
+version: '2.1'
+services:
+  rabbitmq_master:
+    build: 
+      context: ./rabbitmq
+    container_name: rabbitmq_master
+    hostname: "rabbitmq_master"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: abcdefg
+      CLUSTERED: "true"
+    volumes:
+      - "./storage/master:/var/lib/rabbitmq"
+    network_mode: "bridge"
+  rabbitmq_slave:
+    build: 
+      context: ./rabbitmq
+    container_name: rabbitmq_slave
+    hostname: "rabbitmq_slave"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: abcdefg
+      CLUSTERED: "true"
+    volumes:
+      - "./storage/slave:/var/lib/rabbitmq"
+    network_mode: "bridge"
+    links:
+      - rabbitmq_master
+  haproxy:
+    build: 
+      context: ./haproxy
+    container_name: haproxy
+    hostname: haproxy
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 20000:20000
+    network_mode: "bridge"
+    links:
+      - rabbitmq_master
+      - rabbitmq_slave
