@@ -10,4 +10,6 @@ scrape_configs:
   - job_name: 'Rabbit'
     metrics_path: /api/metrics
     static_configs:
-      - targets: ['localhost:15672']
+      - targets: 
+        - localhost:15672
+        - localhost:15673
