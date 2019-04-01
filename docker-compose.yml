@@ -8,9 +8,20 @@ services:
     environment:
       RABBITMQ_ERLANG_COOKIE: abcdefg
       CLUSTERED: "true"
+      VIRTUAL_HOST: rabbitmq-master.com.br
+      VIRTUAL_PORT: 15672
     volumes:
       - "./storage/master:/var/lib/rabbitmq"
     network_mode: "bridge"
+    healthcheck:
+      timeout: 5s
+      interval: 5s
+      retries: 5
+      test:
+        - "CMD"
+        - "rabbitmqctl"
+        - "status"
+
   rabbitmq_slave:
     build: 
       context: ./rabbitmq
@@ -19,11 +30,22 @@ services:
     environment:
       RABBITMQ_ERLANG_COOKIE: abcdefg
       CLUSTERED: "true"
+      VIRTUAL_HOST: rabbitmq-slave.com.br
+      VIRTUAL_PORT: 15672
     volumes:
       - "./storage/slave:/var/lib/rabbitmq"
     network_mode: "bridge"
     links:
       - rabbitmq_master
+    healthcheck:
+      timeout: 5s
+      interval: 5s
+      retries: 5
+      test:
+        - "CMD"
+        - "rabbitmqctl"
+        - "status"
+
   haproxy:
     build: 
       context: ./haproxy
@@ -31,25 +53,28 @@ services:
     hostname: haproxy
     ports:
       - 15672:15672
+      - 15673:15673
       - 5672:5672
       - 20000:20000
     network_mode: "bridge"
     links:
       - rabbitmq_master
       - rabbitmq_slave
+    
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     hostname: prometheus
-    network_mode: "bridge"
+    network_mode: "host"
     volumes:
        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
+          
   grafana:
     image: grafana/grafana
     container_name: grafana
-    network_mode: "bridge"
+    network_mode: "host"
     ports:
       - 3000:3000
     environment:
