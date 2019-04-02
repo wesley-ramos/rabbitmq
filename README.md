@@ -41,7 +41,7 @@ Username: admin
 Password: admin
 ```
 
-### how to access and configure infrastructure monitoring ?
+### How to access and configure infrastructure monitoring ?
 
 1. Access grafana
 
