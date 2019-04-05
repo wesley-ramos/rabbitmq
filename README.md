@@ -62,3 +62,4 @@ Configuration->Data Sources->Add data source
 ```shell
 Create->Import->Upload .json File
 ```
+select the ./grafana/dashboard.json
