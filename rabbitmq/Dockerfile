@@ -10,7 +10,7 @@ RUN cd /plugins && \
 	wget https://github.com/deadtrickster/prometheus_rabbitmq_exporter/releases/download/v3.7.2.5/prometheus_process_collector-1.4.3.ez && \
 	wget https://github.com/deadtrickster/prometheus_rabbitmq_exporter/releases/download/v3.7.2.5/prometheus_rabbitmq_exporter-3.7.2.5.ez
 
-COPY rabbit.conf /etc/rabbitmq/rabbitmq.conf
+COPY rabbitmq.config /etc/rabbitmq/rabbitmq.config
 
 RUN rabbitmq-plugins enable prometheus_rabbitmq_exporter && \
 	rabbitmq-plugins enable prometheus_process_collector
