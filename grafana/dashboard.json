@@ -16,98 +16,24 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1554308568395,
+  "iteration": 1554754402653,
   "links": [],
   "panels": [
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "datasource": "Prometheus",
-      "decimals": 0,
-      "editable": true,
-      "error": false,
-      "format": "dtdurations",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
+      "content": "<center><h1><strong>Overview</strong></h1></center>\n\n\n\n\n",
       "gridPos": {
-        "h": 7,
-        "w": 4,
+        "h": 2,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "hideTimeOverride": false,
-      "id": 9,
-      "interval": "",
-      "isNew": true,
+      "id": 37,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "process_uptime_seconds{instance=\"$instance\", job=\"Rabbit\"} ",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "refId": "A",
-          "step": 20
-        }
-      ],
-      "thresholds": "",
+      "mode": "html",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
+      "title": "",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -116,15 +42,16 @@
       "dashes": false,
       "datasource": "Prometheus",
       "decimals": 0,
+      "description": "Total number of open connections",
       "editable": true,
       "error": false,
       "fill": 1,
       "grid": {},
       "gridPos": {
         "h": 7,
-        "w": 10,
-        "x": 4,
-        "y": 0
+        "w": 8,
+        "x": 0,
+        "y": 2
       },
       "height": "",
       "hideTimeOverride": false,
@@ -157,7 +84,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rabbitmq_connections{instance=\"$instance\"}",
+          "expr": "rabbitmq_connectionsTotal{job=\"Rabbit\"}",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 2,
@@ -217,17 +144,19 @@
       "dashes": false,
       "datasource": "Prometheus",
       "decimals": 0,
+      "description": "Total number of open channels",
       "editable": true,
       "error": false,
       "fill": 1,
       "grid": {},
       "gridPos": {
         "h": 7,
-        "w": 10,
-        "x": 14,
-        "y": 0
+        "w": 8,
+        "x": 8,
+        "y": 2
       },
       "id": 1,
+      "interval": "",
       "isNew": true,
       "legend": {
         "alignAsTable": true,
@@ -255,7 +184,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rabbitmq_channels{instance=\"$instance\"}",
+          "expr": "rabbitmq_channelsTotal{job=\"Rabbit\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Channels",
@@ -307,12 +236,102 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 0,
+      "description": "Total number of message consumers",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 2
+      },
+      "id": 35,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rabbitmq_consumersTotal{job=\"Rabbit\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Consumers",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Consumers",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "content": "<center><h1><strong>Queue</strong></h1></center>\n",
       "gridPos": {
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 9
       },
       "id": 31,
       "links": [],
@@ -327,14 +346,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
+      "description": "Rate of messages published.",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 29,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -361,7 +383,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(rabbitmq_queue_messages_published_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(rabbitmq_queue_messages_published_total{job=\"Rabbit\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -417,12 +439,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "decimals": 0,
+      "description": "Rate of messages delivered in acknowledgement mode to consumers",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 11
       },
       "id": 33,
       "legend": {
@@ -451,7 +474,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(rabbitmq_queue_messages_delivered_total{instance=\"$instance\"}[5m])",
+          "expr": "rate(rabbitmq_queue_messages_delivered_total{job=\"Rabbit\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{queue}}",
@@ -507,14 +530,16 @@
       "dashes": false,
       "datasource": "Prometheus",
       "decimals": 0,
+      "description": "Rate of ready and unacknowledged messages",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 20
       },
       "id": 13,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -541,7 +566,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(10, rabbitmq_queue_messages{instance=\"$instance\"})",
+          "expr": "topk(10, rabbitmq_queue_messages{job=\"Rabbit\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{queue}}",
@@ -595,13 +620,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
       "decimals": 0,
+      "description": "Rate of subset of messages in deliver_get which had the redelivered flag set.",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 20
       },
       "id": 23,
       "legend": {
@@ -633,7 +660,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rabbitmq_queue_messages_redelivered_total{instance=\"$instance\"}",
+          "expr": "rabbitmq_queue_messages_redelivered_total{job=\"Rabbit\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -690,12 +717,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "Rate of messages ready to be delivered to clients",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 29
       },
       "id": 25,
       "legend": {
@@ -724,7 +752,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(rabbitmq_queue_messages_ready{instance=\"$instance\"}[5m])",
+          "expr": "rate(rabbitmq_queue_messages_ready{job=\"Rabbit\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -779,12 +807,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": "Prometheus",
+      "description": "Rate of messages delivered to clients but not yet acknowledged",
       "fill": 1,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 29
       },
       "id": 27,
       "legend": {
@@ -813,7 +843,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(rabbitmq_queue_messages_unacknowledged{instance=\"$instance\"}[5m])",
+          "expr": "rate(rabbitmq_queue_messages_unacknowledged{job=\"Rabbit\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -868,7 +898,7 @@
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 37
       },
       "id": 17,
       "links": [],
@@ -889,7 +919,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 39
       },
       "id": 19,
       "legend": {
@@ -918,15 +948,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rabbitmq_core_node_mem_limit{instance=\"$instance\"}",
+          "expr": "rabbitmq_node_mem_limit{node=\"$node\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "limit",
           "refId": "A"
         },
         {
-          "expr": "rabbitmq_core_node_mem_used{instance=\"$instance\"}",
+          "expr": "rabbitmq_node_mem_used{node=\"$node\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "used",
           "refId": "B"
@@ -984,7 +1015,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 39
       },
       "id": 21,
       "legend": {
@@ -1013,14 +1044,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rabbitmq_core_node_disk_free_limit{instance=\"$instance\"}",
+          "expr": "rabbitmq_node_disk_free_limit{node=\"$node\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "limit",
           "refId": "A"
         },
         {
-          "expr": "rabbitmq_core_node_disk_free{instance=\"$instance\"}",
+          "expr": "rabbitmq_node_disk_free{node=\"$node\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "free",
@@ -1067,660 +1098,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "content": "<center>\n  <h1> <strong>Erlang</strong> </h1>\n</center>\n\n\n\n",
-      "gridPos": {
-        "h": 2,
-        "w": 24,
-        "x": 0,
-        "y": 45
-      },
-      "id": 15,
-      "links": [],
-      "mode": "html",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "type": "text"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 47
-      },
-      "id": 6,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "irate(erlang_vm_statistics_bytes_output_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Output Bytes",
-          "metric": "erlang_vm_statistics_bytes_output_total",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "irate(erlang_vm_statistics_bytes_received_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Received Bytes",
-          "metric": "erlang_vm_statistics_bytes_received_total",
-          "refId": "B",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Erlang VM IO",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 47
-      },
-      "id": 7,
-      "isNew": true,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Words Reclaimed",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "irate(erlang_vm_statistics_garbage_collection_number_of_gcs{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Number of GCs",
-          "metric": "erlang_vm_statistics_garbage_collection_number_of_gcs",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "irate(erlang_vm_statistics_garbage_collection_words_reclaimed{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Words Reclaimed",
-          "metric": "erlang_vm_statistics_garbage_collection_words_reclaimed",
-          "refId": "B",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Erlang VM GC",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 47
-      },
-      "id": 3,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "erlang_vm_memory_bytes_total{instance=\"$instance\",kind=\"processes\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Processes Memory",
-          "refId": "B",
-          "step": 2
-        },
-        {
-          "expr": "erlang_vm_memory_system_bytes_total{instance=\"$instance\", usage=\"atom\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Atoms",
-          "refId": "C",
-          "step": 2
-        },
-        {
-          "expr": "erlang_vm_memory_system_bytes_total{instance=\"$instance\", usage=\"binary\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Binary",
-          "refId": "D",
-          "step": 2
-        },
-        {
-          "expr": "erlang_vm_memory_system_bytes_total{instance=\"$instance\",usage=\"code\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Code",
-          "refId": "E",
-          "step": 2
-        },
-        {
-          "expr": "erlang_vm_memory_system_bytes_total{instance=\"$instance\",usage=\"ets\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "ETS",
-          "refId": "F",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Erlang VM Memory",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 54
-      },
-      "id": 11,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "process_virtual_memory_bytes{instance=\"$instance\",job=\"Rabbit\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Virtual Memory",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "process_resident_memory_bytes{instance=\"$instance\", job=\"Rabbit\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Resident Memory",
-          "refId": "B",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Process Memory",
-      "tooltip": {
-        "msResolution": true,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 54
-      },
-      "id": 8,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "process_open_fds{instance=\"$instance\",job=\"Rabbit\"}",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "Open FDs",
-          "metric": "",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "process_max_fds{instance=\"$instance\",job=\"Rabbit\"}",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 2,
-          "legendFormat": "Max FDs",
-          "refId": "B",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "File Descriptors",
-      "tooltip": {
-        "msResolution": true,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "decimals": null,
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 54
-      },
-      "id": 10,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Threads",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "process_threads_total{instance=\"$instance\",job=\"Rabbit\"}",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Threads",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "sum(irate(process_cpu_seconds_total{instance=\"$instance\",job=\"Rabbit\"}[30s])) without (kind) * 100",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "CPU",
-          "refId": "B",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Native Threads & CPU",
-      "tooltip": {
-        "msResolution": true,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     }
   ],
   "refresh": false,
@@ -1733,29 +1110,29 @@
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "localhost:15672",
-          "value": "localhost:15672"
+          "text": "rabbit@rabbitmq_slave",
+          "value": "rabbit@rabbitmq_slave"
         },
         "datasource": "Prometheus",
-        "definition": "label_values(instance)",
+        "definition": "label_values(node)",
         "hide": 0,
         "includeAll": false,
-        "label": "instance",
+        "label": "node",
         "multi": false,
-        "name": "instance",
+        "name": "node",
         "options": [
           {
-            "selected": true,
-            "text": "localhost:15672",
-            "value": "localhost:15672"
+            "selected": false,
+            "text": "rabbit@rabbitmq_master",
+            "value": "rabbit@rabbitmq_master"
           },
           {
-            "selected": false,
-            "text": "localhost:15673",
-            "value": "localhost:15673"
+            "selected": true,
+            "text": "rabbit@rabbitmq_slave",
+            "value": "rabbit@rabbitmq_slave"
           }
         ],
-        "query": "label_values(instance)",
+        "query": "label_values(node)",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
@@ -1801,5 +1178,5 @@
   "timezone": "browser",
   "title": "RabbitMQ Metrics",
   "uid": "BIpproliz",
-  "version": 1
+  "version": 3
 }

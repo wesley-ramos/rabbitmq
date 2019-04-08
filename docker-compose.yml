@@ -22,6 +22,21 @@ services:
         - "rabbitmqctl"
         - "status"
 
+  export_master_metrics:
+    image: kbudde/rabbitmq-exporter
+    container_name: export_master_metrics
+    hostname: export_master_metrics
+    environment:
+      RABBIT_URL: "http://rabbitmq_master:15672"
+      RABBIT_USER: "admin"
+      RABBIT_PASSWORD: "admin"
+      PUBLISH_PORT: "9419"
+      RABBIT_CAPABILITIES: "bert,no_sort"
+      RABBIT_EXPORTERS: "node,overview,queue" 
+    network_mode: "bridge"
+    links:
+      - rabbitmq_master
+
   rabbitmq_slave:
     build: 
       context: ./rabbitmq
@@ -46,6 +61,21 @@ services:
         - "rabbitmqctl"
         - "status"
 
+  export_slave_metrics:
+    image: kbudde/rabbitmq-exporter
+    container_name: export_slave_metrics
+    hostname: export_slave_metrics
+    environment:
+      RABBIT_URL: "http://rabbitmq_slave:15672"
+      RABBIT_USER: "admin"
+      RABBIT_PASSWORD: "admin"
+      PUBLISH_PORT: "9419"
+      RABBIT_CAPABILITIES: "bert,no_sort"
+      RABBIT_EXPORTERS: "node,overview,queue" 
+    network_mode: "bridge"
+    links:
+      - rabbitmq_slave
+ 
   haproxy:
     build: 
       context: ./haproxy
@@ -53,14 +83,16 @@ services:
     hostname: haproxy
     ports:
       - 15672:15672
-      - 15673:15673
+      - 9419:9419
       - 5672:5672
       - 20000:20000
     network_mode: "bridge"
     links:
       - rabbitmq_master
       - rabbitmq_slave
-    
+      - export_master_metrics
+      - export_slave_metrics
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
